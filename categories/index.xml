@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>DP on OxyTheCrack</title>
+        <link>https://raythecrack.github.io/categories/</link>
+        <description>Recent content in DP on OxyTheCrack</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>Gao &#34;KieRaN&#34; Ziyuan</copyright>
+        <lastBuildDate>Mon, 30 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://raythecrack.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>DP</title>
+        <link>https://raythecrack.github.io/categories/dp/</link>
+        <pubDate>Mon, 30 Dec 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://raythecrack.github.io/categories/dp/</guid>
+        <description>&lt;img src="https://raythecrack.github.io/categories/dp/DP.png" alt="Featured image of post DP" /&gt;</description>
+        </item>
+        <item>
+        <title>String</title>
+        <link>https://raythecrack.github.io/categories/string/</link>
+        <pubDate>Mon, 30 Dec 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://raythecrack.github.io/categories/string/</guid>
+        <description>&lt;img src="https://raythecrack.github.io/categories/string/String.png" alt="Featured image of post String" /&gt;</description>
+        </item>
+        <item>
+        <title>Greedy</title>
+        <link>https://raythecrack.github.io/categories/greedy/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://raythecrack.github.io/categories/greedy/</guid>
+        <description>&lt;img src="https://raythecrack.github.io/categories/greedy/Greedy.png" alt="Featured image of post Greedy" /&gt;</description>
+        </item>
+        <item>
+        <title>Test</title>
+        <link>https://raythecrack.github.io/categories/test/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://raythecrack.github.io/categories/test/</guid>
+        <description>&lt;img src="https://raythecrack.github.io/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
+        </item>
+        
+    </channel>
+</rss>
