@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Luogu P4058">
-<title>Logs</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="CodeForces Round 1016 E">
+<title>Min Max Mex</title>
 
-<link rel='canonical' href='https://raythecrack.github.io/p/logs/'>
+<link rel='canonical' href='https://raythecrack.github.io/p/min-max-mex/'>
 
-<link rel="stylesheet" href="/scss/style.min.e883ca59c434d32c7107052501fb2ccb6f2b569fd38bc0d3655db7f9780146e4.css"><meta property='og:title' content="Logs">
-<meta property='og:description' content="Luogu P4058">
-<meta property='og:url' content='https://raythecrack.github.io/p/logs/'>
+<link rel="stylesheet" href="/scss/style.min.e883ca59c434d32c7107052501fb2ccb6f2b569fd38bc0d3655db7f9780146e4.css"><meta property='og:title' content="Min Max Mex">
+<meta property='og:description' content="CodeForces Round 1016 E">
+<meta property='og:url' content='https://raythecrack.github.io/p/min-max-mex/'>
 <meta property='og:site_name' content='OxyTheCrack'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-02-25T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-02-25T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="Logs">
-<meta name="twitter:description" content="Luogu P4058">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-04-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-15T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Min Max Mex">
+<meta name="twitter:description" content="CodeForces Round 1016 E">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -222,11 +222,6 @@
     <li>
       <ol>
         <li><a href="#problem-statement">Problem Statement</a></li>
-        <li><a href="#input">Input</a></li>
-        <li><a href="#output">Output</a></li>
-        <li><a href="#sample-input">Sample Input</a></li>
-        <li><a href="#sample-output">Sample Output</a></li>
-        <li><a href="#constraints">Constraints</a></li>
         <li><a href="#solving">Solving</a></li>
       </ol>
     </li>
@@ -252,17 +247,21 @@
                 Binary Search
             </a>
         
+            <a href="/categories/greedy/" style="background-color: #9400D3; color: #fff;">
+                Greedy
+            </a>
+        
     </header>
     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/logs/">Logs</a>
+            <a href="/p/min-max-mex/">Min Max Mex</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            Luogu P4058
+            CodeForces Round 1016 E
         </h3>
         
     </div>
@@ -283,7 +282,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2025-02-25</time>
+                <time class="article-time--published">2025-04-15</time>
             </div>
         
 
@@ -314,48 +313,20 @@
     
     
     <h3 id="problem-statement">Problem Statement
-</h3><p>有 $n$ 棵树，初始时每棵树的高度为 $H_i$，第 $i$ 棵树每月都会长高 $A_i$。现在有个木料长度总量为 $S$ 的订单，客户要求每块木料的长度不能小于  $L$，而且木料必须是整棵树（即不能为树的一部分）。现在问你最少需要等多少个月才能满足订单。</p>
-<h3 id="input">Input
-</h3><p>第一行 $3$ 个用空格隔开的非负整数 $n,S,L$，表示树的数量、订单总量和单块木料长度限制。</p>
-<p>第二行 $n$ 个用空格隔开的非负整数，依次为 $H_1,H_2, &hellip; ,H_n$。</p>
-<p>第三行 $n$ 个用空格隔开的非负整数，依次为 $A_1,A_2, &hellip; ,A_n$。</p>
-<h3 id="output">Output
-</h3><p>输出一行一个整数表示答案。</p>
-<h3 id="sample-input">Sample Input
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">3 74 51
-</span></span><span class="line"><span class="cl">2 5 2
-</span></span><span class="line"><span class="cl">2 7 9
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="sample-output">Sample Output
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">7
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="constraints">Constraints
-</h3><p>对于样例，在六个月后，各棵树的高度分别为 $14,47,56$，此时无法完成订单。</p>
-<p>在七个月后，各棵树的高度分别为 $16,54,65$，此时可以砍下第 $2$ 和第 $3$ 棵树完成订单了。</p>
-<p><img src="https://cdn.luogu.com.cn/upload/pic/12821.png"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
+</h3><p>You are given an array $a$ of length $n$ and a number $k$.</p>
+<p>A subarray is defined as a sequence of one or more consecutive elements of the array. You need to split the array $a$ into $k$ non-overlapping subarrays $b_1, b_2, \dots, b_k$ such that the union of these subarrays equals the entire array. Additionally, you need to maximize the value of $x$, which is equal to the minimum MEX$(b_i)$, for $i \in [1..k]$.</p>
+<p>MEX$(v)$ denotes the smallest non-negative integer that is not present in the array $v$.</p>
+<p><strong>Input</strong></p>
+<p>The first line contains an integer $t$ $(1\leq t\leq 10^4)$  — the number of test cases.</p>
+<p>The first line of each test case contains two integers $n$, $k$ $(1\leq k \leq n \leq 2 \cdot 10^5)$  — the length of the array and the number of segments to split the array into.</p>
+<p>The second line of each test case contains $n$ integers $a_i$ $(0\leq a_i\leq 10^9)$  — the elements of the array.</p>
+<p>It is guaranteed that the sum of $n$ across all test cases does not exceed $2\cdot 10^5$.</p>
+<p><strong>Output</strong></p>
+<p>For each query, output a single number  — the maximum value $x$ such that there exists a partition of the array $a$ into $k$ subarrays where the minimum MEX equals $x$.</p>
 <h3 id="solving">Solving
-</h3><p>我们容易注意到答案具有单调性，即月份越大，其树木的长度一定是越来越大的，我们只需要对于月份进行二分答案即可。</p>
+</h3><p>求一个区间的最小MEX值的最大值，考虑二分区间：</p>
+<p>二分区间的最小MEX(x)，枚举依靠此MEX值能将数组分为多少个子数组，返回cnt &gt;= k</p>
+<p>二分判断函数中利用std::bitset模拟，同时优化空间与时间。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -388,42 +359,69 @@
 </span><span class="lnt">28
 </span><span class="lnt">29
 </span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mf">2e5</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">l</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">h</span><span class="p">[</span><span class="n">N</span><span class="p">],</span><span class="n">g</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">check</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>       
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//二分求解全局最大最小MEX
+</span></span></span><span class="line"><span class="cl"><span class="c1">//枚举全局最小MEX
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">check</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">arr</span><span class="p">,</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   
+</span></span><span class="line"><span class="cl">    <span class="n">bitset</span><span class="o">&lt;</span><span class="n">N</span><span class="o">&gt;</span> <span class="n">bs</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bs</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//counts of the subarrays
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">cur_mex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span> <span class="o">*</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">val</span><span class="o">&gt;=</span><span class="n">l</span><span class="p">)</span> <span class="n">sum</span> <span class="o">+=</span> <span class="n">val</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">sum</span><span class="o">&gt;=</span><span class="n">s</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>   
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">)</span><span class="c1">//剪枝：如果arr[i]&gt;n 其mex一定&lt;=n
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">bs</span><span class="p">[</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">bs</span><span class="p">[</span><span class="n">cur_mex</span><span class="p">])</span> <span class="n">cur_mex</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">cur_mex</span> <span class="o">&gt;=</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">bs</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cur_mex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bs</span><span class="p">.</span><span class="n">reset</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">cnt</span> <span class="o">&gt;=</span> <span class="n">k</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">s</span> <span class="o">&gt;&gt;</span> <span class="n">l</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">r</span> <span class="o">=</span> <span class="mf">1e18</span><span class="o">+</span><span class="mi">1ull</span><span class="p">,</span><span class="n">mid</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="o">!=</span><span class="n">r</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span> <span class="o">&gt;&gt;</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">arr</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">r</span> <span class="o">=</span> <span class="mf">1e9</span><span class="p">,</span><span class="n">mid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="o">&lt;</span><span class="n">r</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="n">r</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">check</span><span class="p">(</span><span class="n">mid</span><span class="p">))</span> <span class="n">r</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="n">l</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">check</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="n">mid</span><span class="p">))</span> <span class="n">l</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="n">r</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">check</span><span class="p">(</span><span class="n">l</span><span class="p">))</span> <span class="n">l</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">l</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">check</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="n">r</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">l</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">l</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>注意：类似于while(l+1!=r)这类的二分答案写法，其并不会将答案直接明确地表明出在哪个边界，只是将答案范围缩小到了l和r其中的一个之间，我们需要根据题目的实际要求(max/min)，来多加一步判断。在本题中是<code>if(!check(l))l=r;</code>意为如果l不满足，则r就是需要的最小的月份。</strong></p>
-
+</div>
 </section>
 
 
@@ -483,12 +481,25 @@
             
                 
 <article class="">
-    <a href="/p/min-max-mex/">
+    <a href="/p/fast-and-fat/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">Min Max Mex</h2>
+            <h2 class="article-title">Fast and Fat</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/copy-books/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Copy Books</h2>
         </div>
     </a>
 </article>
@@ -509,19 +520,6 @@
             
                 
 <article class="">
-    <a href="/p/fast-and-fat/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Fast and Fat</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
     <a href="/p/%E9%80%9B%E7%94%BB%E5%B1%95/">
         
         
@@ -535,12 +533,12 @@
             
                 
 <article class="">
-    <a href="/p/copy-books/">
+    <a href="/p/cutropes/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">Copy Books</h2>
+            <h2 class="article-title">CutRopes</h2>
         </div>
     </a>
 </article>

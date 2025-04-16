@@ -7,21 +7,29 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Gao &#34;KieRaN&#34; Ziyuan</copyright>
-        <lastBuildDate>Thu, 27 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://raythecrack.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 15 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://raythecrack.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Binary Search</title>
+        <link>https://raythecrack.github.io/categories/binary-search/</link>
+        <pubDate>Tue, 15 Apr 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://raythecrack.github.io/categories/binary-search/</guid>
+        <description>&lt;img src="https://raythecrack.github.io/categories/binary-search/BS.png" alt="Featured image of post Binary Search" /&gt;</description>
+        </item>
+        <item>
+        <title>Greedy</title>
+        <link>https://raythecrack.github.io/categories/greedy/</link>
+        <pubDate>Tue, 15 Apr 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://raythecrack.github.io/categories/greedy/</guid>
+        <description>&lt;img src="https://raythecrack.github.io/categories/greedy/Greedy.png" alt="Featured image of post Greedy" /&gt;</description>
+        </item>
+        <item>
         <title>Data Structure</title>
         <link>https://raythecrack.github.io/categories/data-structure/</link>
         <pubDate>Thu, 27 Mar 2025 00:00:00 +0000</pubDate>
         
         <guid>https://raythecrack.github.io/categories/data-structure/</guid>
         <description>&lt;img src="https://raythecrack.github.io/categories/data-structure/DS.png" alt="Featured image of post Data Structure" /&gt;</description>
-        </item>
-        <item>
-        <title>Binary Search</title>
-        <link>https://raythecrack.github.io/categories/binary-search/</link>
-        <pubDate>Wed, 26 Mar 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://raythecrack.github.io/categories/binary-search/</guid>
-        <description>&lt;img src="https://raythecrack.github.io/categories/binary-search/BS.png" alt="Featured image of post Binary Search" /&gt;</description>
         </item>
         <item>
         <title>Graphs</title>
@@ -38,14 +46,6 @@
         
         <guid>https://raythecrack.github.io/categories/shortest-paths/</guid>
         <description>&lt;img src="https://raythecrack.github.io/categories/shortest-paths/SP.png" alt="Featured image of post Shortest Paths" /&gt;</description>
-        </item>
-        <item>
-        <title>Greedy</title>
-        <link>https://raythecrack.github.io/categories/greedy/</link>
-        <pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate>
-        
-        <guid>https://raythecrack.github.io/categories/greedy/</guid>
-        <description>&lt;img src="https://raythecrack.github.io/categories/greedy/Greedy.png" alt="Featured image of post Greedy" /&gt;</description>
         </item>
         <item>
         <title>Depth First Search</title>
