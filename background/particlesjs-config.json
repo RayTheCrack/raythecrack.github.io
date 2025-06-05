@@ -8,7 +8,7 @@
         }
       },
       "color": {
-        "value": "#B22222"
+        "value": "#6495ED"
       },
       "shape": {
         "type": "star",
@@ -48,7 +48,7 @@
       "line_linked": {
         "enable": true,
         "distance": 80,
-        "color": "#CD5555",
+        "color": "#87CEEB",
         "opacity": 0.4,
         "width": 1
       },

@@ -204,11 +204,11 @@
 &lt;/div&gt;</description>
         </item>
         <item>
-        <title>最大子树和</title>
-        <link>https://raythecrack.github.io/p/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%A0%91%E5%92%8C/</link>
+        <title>Max Sub-Tree Sum</title>
+        <link>https://raythecrack.github.io/p/max-sub-tree-sum/</link>
         <pubDate>Wed, 26 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://raythecrack.github.io/p/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%A0%91%E5%92%8C/</guid>
+        <guid>https://raythecrack.github.io/p/max-sub-tree-sum/</guid>
         <description>&lt;h3 id=&#34;problem-statement&#34;&gt;Problem Statement
 &lt;/h3&gt;&lt;p&gt;小明对数学饱有兴趣，并且是个勤奋好学的学生，总是在课后留在教室向老师请教一些问题。一天他早晨骑车去上课，路上见到一个老伯正在修剪花花草草，顿时想到了一个有关修剪花卉的问题。于是当日课后，小明就向老师提出了这个问题：&lt;/p&gt;
 &lt;p&gt;一株奇怪的花卉，上面共连有 $N$ 朵花，共有 $N-1$ 条枝干将花儿连在一起，并且未修剪时每朵花都不是孤立的。每朵花都有一个“美丽指数”，该数越大说明这朵花越漂亮，也有“美丽指数”为负数的，说明这朵花看着都让人恶心。所谓“修剪”，意为：去掉其中的一条枝条，这样一株花就成了两株，扔掉其中一株。经过一系列“修剪“之后，还剩下最后一株花（也可能是一朵）。老师的任务就是：通过一系列“修剪”（也可以什么“修剪”都不进行），使剩下的那株（那朵）花卉上所有花朵的“美丽指数”之和最大。&lt;/p&gt;
@@ -367,11 +367,11 @@ $$&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 </description>
         </item>
         <item>
-        <title>路径之谜</title>
-        <link>https://raythecrack.github.io/p/%E8%B7%AF%E5%BE%84%E4%B9%8B%E8%B0%9C/</link>
+        <title>Mystery Of The Path</title>
+        <link>https://raythecrack.github.io/p/mystery-of-the-path/</link>
         <pubDate>Wed, 26 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://raythecrack.github.io/p/%E8%B7%AF%E5%BE%84%E4%B9%8B%E8%B0%9C/</guid>
+        <guid>https://raythecrack.github.io/p/mystery-of-the-path/</guid>
         <description>&lt;h3 id=&#34;problem-statement&#34;&gt;Problem Statement
 &lt;/h3&gt;&lt;p&gt;小明冒充 $X$ 星球的骑士，进入了一个奇怪的城堡。&lt;/p&gt;
 &lt;p&gt;城堡里边什么都没有，只有方形石头铺成的地面。&lt;/p&gt;
@@ -609,11 +609,11 @@ $$&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;/div&gt;</description>
         </item>
         <item>
-        <title>挖地雷</title>
-        <link>https://raythecrack.github.io/p/%E6%8C%96%E5%9C%B0%E9%9B%B7/</link>
+        <title>Mine Digger</title>
+        <link>https://raythecrack.github.io/p/mine-digger/</link>
         <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://raythecrack.github.io/p/%E6%8C%96%E5%9C%B0%E9%9B%B7/</guid>
+        <guid>https://raythecrack.github.io/p/mine-digger/</guid>
         <description>&lt;h3 id=&#34;problem-statement&#34;&gt;Problem Statement
 &lt;/h3&gt;&lt;p&gt;在一个地图上有 $N\ (N \le 20)$ 个地窖，每个地窖中埋有一定数量的地雷。同时，给出地窖之间的连接路径。当地窖及其连接的数据给出之后，某人可以从任一处开始挖地雷，然后可以沿着指出的连接往下挖（仅能选择一条路径），当无连接时挖地雷工作结束。设计一个挖地雷的方案，使某人能挖到最多的地雷。&lt;/p&gt;
 &lt;h3 id=&#34;input&#34;&gt;Input
