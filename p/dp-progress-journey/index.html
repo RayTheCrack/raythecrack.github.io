@@ -222,13 +222,9 @@
     <li>
       <ol>
         <li><a href="#有严格位置依赖的二维动态规划的一维空间优化">有严格位置依赖的二维动态规划的一维空间优化</a></li>
-        <li><a href="#bitset位图解决背包方案问题">Bitset位图解决背包方案问题</a>
-          <ol>
-            <li></li>
-          </ol>
-        </li>
         <li><a href="#背包dp">背包DP</a>
           <ol>
+            <li><a href="#普通01背包">普通0/1背包</a></li>
             <li><a href="#01背包二维费用">0/1背包（二维费用）</a></li>
             <li><a href="#完全背包">完全背包</a></li>
             <li><a href="#分组背包">分组背包</a></li>
@@ -258,8 +254,10 @@
         </li>
         <li><a href="#经典动态规划模型收集">经典动态规划模型收集</a>
           <ol>
+            <li><a href="#位图解决背包方案问题">位图解决背包方案问题</a></li>
             <li><a href="#lis最长上升子序列onlogn">LIS最长上升子序列O(n*logn)</a></li>
             <li><a href="#lcs最长公共子序列onm">LCS最长公共子序列O(n*m)</a></li>
+            <li><a href="#基于子串或子数组的计数dp">基于子串或子数组的计数DP</a></li>
           </ol>
         </li>
         <li><a href="#换根dp">换根DP</a>
@@ -345,7 +343,7 @@
 
 
                 <time class="article-time--reading">
-                    21 minute read
+                    23 minute read
                 </time>
             </div>
         
@@ -435,10 +433,9 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="bitset位图解决背包方案问题">Bitset位图解决背包方案问题
-</h3><h5 id="砝码称重">砝码称重
-</h5><p>你有一架天平和 $N$ 个砝码, 这 $N$ 个砝码重量依次是 $W_{1}, W_{2}, \cdots, W_{N}$ 。 请你计算一共可以称出多少种不同的重量?</p>
-<p>01背包求方案数的模板题:</p>
+</div><h3 id="背包dp">背包DP
+</h3><h4 id="普通01背包">普通0/1背包
+</h4><p>小 K 有 <em>N</em> 项工作等待完成，第 <em>i</em> 项工作需要花 t_i 单位时间，必须在 d_i 时刻或之前完成，报酬为 p_i。假设小 K 工作时刻从 0 开始，且同一时刻只能做一项工作、工作一旦开始则不可中断或切换至其他工作，请你帮小 K 规划一下如何选择合适的工作，使小 K 可以获得最多的报酬。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -463,34 +460,65 @@
 </span><span class="lnt">20
 </span><span class="lnt">21
 </span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mf">1e7</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
-</span></span><span class="line"><span class="cl"><span class="n">bitset</span><span class="o">&lt;</span><span class="n">N</span><span class="o">&gt;</span> <span class="n">dp</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">struct</span> <span class="nc">node</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   
+</span></span><span class="line"><span class="cl">    <span class="c1">// 需要时间 截止时间 完成贡献
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">t</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">val</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="n">node</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> 
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">dp</span> <span class="o">|=</span> <span class="n">dp</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">//表示将dp向左边移动val[i]位后与原dp进行与或操作
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>	
-</span></span><span class="line"><span class="cl">        <span class="c1">//表示将dp向右边移动val[i]位后与原dp进行与或操作
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">dp</span> <span class="o">|=</span> <span class="n">dp</span> <span class="o">&gt;&gt;</span> <span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">t</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">t</span> <span class="o">&gt;&gt;</span> <span class="n">d</span> <span class="o">&gt;&gt;</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">t</span><span class="o">&gt;</span><span class="n">d</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span> <span class="c1">// 如果需要时间在截止时间之后则无效
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">a</span><span class="p">.</span><span class="n">push_back</span><span class="p">({</span><span class="n">t</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">p</span><span class="p">});</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dp</span><span class="p">.</span><span class="n">count</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">a</span><span class="p">.</span><span class="n">end</span><span class="p">(),[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">node</span> <span class="n">x</span><span class="p">,</span> <span class="n">node</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>   
+</span></span><span class="line"><span class="cl">        <span class="c1">// 贪心
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">d</span> <span class="o">!=</span> <span class="n">y</span><span class="p">.</span><span class="n">d</span><span class="p">)</span> <span class="k">return</span> <span class="n">x</span><span class="p">.</span><span class="n">d</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">.</span><span class="n">d</span><span class="p">;</span> <span class="c1">// 优先安排截止时间紧迫的任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">t</span> <span class="o">!=</span> <span class="n">y</span><span class="p">.</span><span class="n">t</span><span class="p">)</span> <span class="k">return</span> <span class="n">x</span><span class="p">.</span><span class="n">t</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">.</span><span class="n">t</span><span class="p">;</span> <span class="c1">// 再优先安排花费时间少的任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">x</span><span class="p">.</span><span class="n">p</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">.</span><span class="n">p</span><span class="p">;</span> <span class="c1">// 最后优先安排贡献多的任务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">dp</span><span class="p">(</span><span class="mi">5010</span><span class="p">);</span> <span class="c1">// dp[i]表示截止至i时间前最多能获得多少报酬
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">auto</span> <span class="p">[</span><span class="n">t</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">d</span><span class="p">;</span><span class="n">j</span><span class="o">&gt;=</span><span class="n">t</span><span class="p">;</span><span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="c1">// 0/1背包，当前任务做还是不做 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">hi</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">5000</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">hi</span><span class="p">,</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">hi</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="背包dp">背包DP
-</h3><h4 id="01背包二维费用">0/1背包（二维费用）
+</div><h4 id="01背包二维费用">0/1背包（二维费用）
 </h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1162,9 +1190,9 @@ dp[v][k] = dp[u][k] + val \\
 dp[u][k] = max/min(dp[v][k-1],dp[u][k])
 \end{cases}
 $$<h4 id="选课">选课
-</h4><p>在大学里每个学生，为了达到一定的学分，必须从很多课程里选择一些课程来学习，在课程里有些课程必须在某些课程之前学习，如高等数学总是在其它课程之前学习。现在有 $N$ 门功课，每门课有个学分，每门课有一门或没有直接先修课（若课程 a 是课程 b 的先修课即只有学完了课程 a，才能学习课程 b）。一个学生要从这些课程里选择 $M$ 门课程学习，问他能获得的最大学分是多少？</p>
-<p>第一行有两个整数 $N$ , $M$ 用空格隔开。( $1 \leq N \leq 300$ , $1 \leq M \leq 300$ )</p>
-<p>接下来的 $N$ 行,第 $I+1$ 行包含两个整数 $k_i $和 $s_i$, $k_i$ 表示第I门课的直接先修课，$s_i$ 表示第I门课的学分。若 $k_i=0$ 表示没有直接先修课（$1 \leq {k_i} \leq N$ , $1 \leq {s_i} \leq 20$）。</p>
+</h4><p>在大学里每个学生，为了达到一定的学分，必须从很多课程里选择一些课程来学习，在课程里有些课程必须在某些课程之前学习，如高等数学总是在其它课程之前学习。现在有 N 门功课，每门课有个学分，每门课有一门或没有直接先修课（若课程 a 是课程 b 的先修课即只有学完了课程 a，才能学习课程 b）。一个学生要从这些课程里选择 M 门课程学习，问他能获得的最大学分是多少？</p>
+<p>第一行有两个整数 N , M用空格隔开。( 1 &lt;= N &lt;= 300 , 1 &lt;= M &lt;= 300 )</p>
+<p>接下来的 N 行,第 i+1 行包含两个整数 k_i 和 s_i, k_i 表示第I门课的直接先修课，s_i 表示第I门课的学分。若 k_i=0表示没有直接先修课（1 &lt;= k_i &lt;= N , 1 &lt;= s_i &lt;= 20）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1380,13 +1408,13 @@ $$<h4 id="选课">选课
 </div><h3 id="状压dp">状压DP
 </h3><p>设计一个整型可变参数status，<strong>利用status的位信息</strong>，来表示：</p>
 <p>某个样本是否还能继续使用，然后利用这个信息进行尝试，<strong>递归求解（记忆化搜索）</strong></p>
-<p>如果有K个样本，那么表示这些样本的状态数量就是$2^{K}$</p>
-<p>所以可变参数status的范围是：$[0 ,2^{K} - 1]$</p>
-<p>样本每增加一个，状态的数量都是指数级增长，故状压DP能解决的问题往往样本数据量不大，基本都在20个以内$(10^{6})$</p>
+<p>如果有K个样本，那么表示这些样本的状态数量就是2^{K}</p>
+<p>所以可变参数status的范围是：[0 ,2^{K} - 1]</p>
+<p>样本每增加一个，状态的数量都是指数级增长，故状压DP能解决的问题往往样本数据量不大，基本都在20个以内(10^{6})</p>
 <p><strong>可以根据题目数据情况选择是否使用第0位比特位(最好统一都从0开始)，如果样本数n接近20，应选择使用0位比特位，即所有数据转为下标从0开始，避免超时</strong></p>
 <h4 id="geppetto">GEPPETTO
-</h4><p>Geppetto 用 $N$ (1 &lt;= N &lt;= 20) 种原材料做比萨，每种原材料只有一个。原材料标号为 $1$ 到 $N$。做披萨很简单，只要把原材料混合好然后放进烤箱里烤一烤就行了。但 Geppetto 发现一共有 $M$ (0 &lt;= M &lt;= 400) 对原材料是冲突的，如果一对冲突的原材料混合在一份披萨里，这份披萨就会变得十分难吃。这给他带来了额外的麻烦。</p>
-<p>Geppetto 想知道他最多能做多少种不同的比萨。如果一份比萨上有编号为 $i$ 的原材料，而另一份比萨上没有，那么这两份比萨就是不同的。</p>
+</h4><p>Geppetto 用 N(1 &lt;= N &lt;= 20) 种原材料做比萨，每种原材料只有一个。原材料标号为 1 到 N。做披萨很简单，只要把原材料混合好然后放进烤箱里烤一烤就行了。但 Geppetto 发现一共有M (0 &lt;= M &lt;= 400) 对原材料是冲突的，如果一对冲突的原材料混合在一份披萨里，这份披萨就会变得十分难吃。这给他带来了额外的麻烦。</p>
+<p>Geppetto 想知道他最多能做多少种不同的比萨。如果一份比萨上有编号为 i 的原材料，而另一份比萨上没有，那么这两份比萨就是不同的。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1657,7 +1685,7 @@ $$<h4 id="选课">选课
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="tsp问题">TSP问题
-</h4><p>某乡有 $n\ (2\le n\le 20)$ 个村庄，有一个售货员，他要到各个村庄去售货，各村庄之间的路程 $s\ (0&lt;s&lt;1000)$ 是已知的，且 $A$ 村到 $B$ 村与 $B$ 村到 $A$ 村的路大多不同。为了提高效率，他从商店出发到每个村庄一次，然后返回商店所在的村，假设商店所在的村庄为 $1$，他不知道选择什么样的路线才能使所走的路程最短。请你帮他选择一条最短的路。</p>
+</h4><p>某乡有 n(2&lt;= n&lt;= 20) 个村庄，有一个售货员，他要到各个村庄去售货，各村庄之间的路程 s (0&lt;s&lt;1000) 是已知的，且 A 村到 B 村与 B 村到 A 村的路大多不同。为了提高效率，他从商店出发到每个村庄一次，然后返回商店所在的村，假设商店所在的村庄为 1，他不知道选择什么样的路线才能使所走的路程最短。请你帮他选择一条最短的路。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1719,7 +1747,7 @@ $$<h4 id="选课">选课
 </span></span></span><span class="line"><span class="cl"><span class="c1">// cur : 表示当前售货员停在哪个村庄
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">status</span><span class="p">,</span><span class="kt">int</span> <span class="n">cur</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">     <span class="k">if</span><span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">grid</span><span class="p">[</span><span class="n">cur</span><span class="p">][</span><span class="mi">0</span><span class="p">];</span> <span class="c1">//此时代表所有村庄均已经过，仅需返回0起始村庄
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
@@ -1755,14 +1783,16 @@ $$<h4 id="选课">选课
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="关灯问题ii">关灯问题II
-</h4><p>现有 $n$ (1 &lt;= n &lt;= 10)盏灯，以及 $m$ (1 &lt;= m &lt;= 100)个按钮。每个按钮可以同时控制这 $n$ 盏灯——按下了第 $i$ 个按钮，对于所有的灯都有一个效果。按下 $i$ 按钮对于第 $j$ 盏灯，是下面 $3$ 种效果之一：</p>
+</h4><p>$$
+现有 n (1 &lt;= n &lt;= 10)盏灯，以及 m (1 &lt;= m &lt;= 100)个按钮。\每个按钮可以同时控制这 n 盏灯——按下了第 i 个按钮，对于所有的灯都有一个效果。按下 i 按钮对于第 j 盏灯，是下面 3 种效果之一：\</p>
 <ul>
-<li>如果 $a_{i,j}$ 为 $1$，那么当这盏灯开了的时候，把它关上，否则不管；</li>
-<li>如果 $a_{i,j}$ 为 $-1$，如果这盏灯是关的，那么把它打开，否则也不管；</li>
-<li>如果 $a_{i,j}$ 为 $0$，无论这灯是否开，都不管。</li>
+<li>如果 a_{i,j} 为 1，那么当这盏灯开了的时候，把它关上，否则不管；\</li>
+<li>如果 a_{i,j} 为 -1，如果这盏灯是关的，那么把它打开，否则也不管；\</li>
+<li>如果 a_{i,j} 为 0，无论这灯是否开，都不管。\</li>
 </ul>
-<p>现在这些灯都是开的，给出所有开关对所有灯的控制效果，求问最少要按几下按钮才能全部关掉。前两行两个整数，分别是 $n$ 和 $m$。</p>
-<p>接下来 $m$ 行，每行 $n$ 个整数，第 $(i+2)$ 行的第 $j$ 个整数为 $a_{i,j}$，表示第 $i$ 个开关对第 $j$ 个灯的效果。</p>
+<p>现在这些灯都是开的，给出所有开关对所有灯的控制效果，求问最少要按几下按钮才能全部关掉。前两行两个整数，分别是 n 和 m。\</p>
+<p>接下来 m 行，每行 n 个整数，第 (i+2) 行的第 j 个整数为 a_{i,j}，表示第 i 个开关对第 j 个灯的效果。
+$$</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1878,7 +1908,62 @@ $$<h4 id="选课">选课
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="经典动态规划模型收集">经典动态规划模型收集
-</h3><h4 id="lis最长上升子序列onlogn">LIS最长上升子序列O(n*logn)
+</h3><h4 id="位图解决背包方案问题">位图解决背包方案问题
+</h4>$$
+你有一架天平和N 个砝码, 这 N 个砝码重量依次是 W_{1}, W_{2}, \cdots, W_{N} ~ 请你计算一共可以称出多少种不同的重量?
+$$<p>
+01背包求方案数的模板题:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="mf">1e7</span><span class="o">+</span><span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="n">bitset</span><span class="o">&lt;</span><span class="n">N</span><span class="o">&gt;</span> <span class="n">dp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">val</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dp</span> <span class="o">|=</span> <span class="n">dp</span> <span class="o">&lt;&lt;</span> <span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//表示将dp向左边移动val[i]位后与原dp进行与或操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>	
+</span></span><span class="line"><span class="cl">        <span class="c1">//表示将dp向右边移动val[i]位后与原dp进行与或操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">dp</span> <span class="o">|=</span> <span class="n">dp</span> <span class="o">&gt;&gt;</span> <span class="n">val</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dp</span><span class="p">.</span><span class="n">count</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="lis最长上升子序列onlogn">LIS最长上升子序列O(n*logn)
 </h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -2064,6 +2149,78 @@ $$<h4 id="选课">选课
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h4 id="基于子串或子数组的计数dp">基于子串或子数组的计数DP
+</h4><p>套路题，常常<strong>定义dp[i]为以1 ~  i为左端点，i为右端点的所有字串中，满足条件的数量，ans就是总的dp数组之和</strong></p>
+<p>例：美丽字符串计数</p>
+<p>当一个由<code>0</code>和<code>1</code>组成的非空字符串S<em>S</em>满足以下条件时，我们称其为美丽字符串：</p>
+<p>(条件) 可以通过以下操作序列将S的长度缩减至1，并使S中最终剩下的唯一字符是<code>1</code></p>
+<ol>
+<li>
+<p>选择任意满足1≤i≤∣<em>S</em>∣−1的整数i。</p>
+</li>
+<li>
+<p>按以下规则定义整数x：</p>
+<p>S_i == S_(i+1) -&gt; x = 1</p>
+<p>else x = 0</p>
+</li>
+<li>
+<p>移除S_i和S_(i+1)，并在原位置插入与x对应的数字。</p>
+</li>
+</ol>
+<p>给定一个长度为N、由<code>0</code>和<code>1</code>组成的字符串T。
+请统计T的所有子串中美丽字符串的数量。即使两个子串内容相同，只要在原串中的位置不同，就视为不同的子串。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">solve</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>   
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span> <span class="o">=</span> <span class="s">&#34;%&#34;</span> <span class="o">+</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">dp</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// dp[i]表示每个1~i每个下标到i构成的子串中美丽字符串的总和
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ans</span> <span class="o">+=</span> <span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 之前是完美字符串的个数加上这个1还是原来的完美字符串个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">// 但需要单独加上i单独拿出来时的1长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 之前不是完美字符串的字串在添上这个0后会变成完美字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">else</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 累加贡献
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">ans</span> <span class="o">+=</span> <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
 </div><h3 id="换根dp">换根DP
 </h3><p>树上的某些问题，需要知道以不同节点做根的情况下，答案是多少</p>
 <p>换根DP的重要思考点：</p>
@@ -2076,7 +2233,7 @@ $$<h4 id="选课">选课
 <p>核心在于换根时，答案如何转移</p>
 <p>推导状态转移方程时，可以画一个简单的完全二叉树结构继续进行模拟推导</p>
 <h4 id="以某个节点为根的最大深度和">以某个节点为根的最大深度和
-</h4><p>给定一个 $n$ 个点的树，请求出一个结点，使得以这个结点为根时，所有结点的深度之和最大。</p>
+</h4><p>给定一个 n 个点的树，请求出一个结点，使得以这个结点为根时，所有结点的深度之和最大。</p>
 <p>一个结点的深度之定义为该节点到根的简单路径上边的数量。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2185,7 +2342,7 @@ $$<h4 id="选课">选课
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="tree-painting">Tree Painting
-</h4><p>给定一棵包含 $n$ 个顶点的树（无向连通无环图）。你要在这棵树上玩一个游戏。</p>
+</h4><p>给定一棵包含 n 个顶点的树（无向连通无环图）。你要在这棵树上玩一个游戏。</p>
 <p>最开始所有顶点都是白色的。在游戏的第一回合，你选择一个顶点并将其染成黑色。之后的每一回合，你都可以选择一个与任意黑色顶点相邻的白色顶点，并将其染成黑色。</p>
 <p>每当你选择一个顶点（包括第一回合），你获得的分数等于包含该顶点的、仅由白色顶点组成的连通块的大小。游戏在所有顶点都被染成黑色时结束。</p>
 <p>你的任务是最大化你获得的分数</p>
@@ -2274,10 +2431,13 @@ $$<h4 id="选课">选课
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="tree-with-maximum-cost">Tree with Maximum Cost
-</h4><p>给定一棵恰好有 $n$ 个顶点的树。树是一个连通无向图，包含 $n-1$ 条边。树上的每个顶点 $v$ 都被赋予了一个值 $a_v$。</p>
-<p>定义 $dist(x, y)$ 为顶点 $x$ 和 $y$ 之间的距离，即它们之间简单路径上的边数。</p>
-<p>我们将树的代价定义如下：首先，固定树上的某个顶点 $v$。然后，树的代价为 $\sum\limits_{i = 1}^{n} dist(i, v) \cdot a_i$。</p>
-<p>你的任务是计算，如果可以任意选择 $v$，树的最大可能代价是多少。</p>
+</h4><p>给定一棵恰好有 n 个顶点的树。树是一个连通无向图，包含 $n-1$ 条边。树上的每个顶点 $v$ 都被赋予了一个值 $a_v$。</p>
+<p>定义 dist(x, y) 为顶点 x 和 y 之间的距离，即它们之间简单路径上的边数。</p>
+<p>我们将树的代价定义如下：首先，固定树上的某个顶点 v$。然后，树的代价为</p>
+$$
+ \sum\limits_{i = 1}^{n} dist(i, v) \cdot a_i
+$$<p>
+你的任务是计算，如果可以任意选择 v，树的最大可能代价是多少。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -2415,8 +2575,8 @@ $$<h4 id="选课">选课
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="choosing-capital-for-treeland">Choosing Capital for Treeland
-</h4><p>Treeland 国有 $n$ 个城市，有些城市间存在 <strong>单向</strong> 道路。这个国家一共有 $n - 1$ 条路。我们知道，如果把边视作双向的，那么从任意城市出发能到达任意城市。</p>
-<p>城市的委员会最近决定为 Treeland 国选择一个首都，显然首都会是国中的一个城市。委员会将在首都开会，并经常去其他城市（这里不考虑从其他城市回到首都）。因此，如果城市 $a$ 被选为首都，那么所有的道路应该被定向，以使得我们能从城市 $a$ 到达其他城市。所以，有些路可能需要反转方向。</p>
+</h4><p>Treeland 国有 n 个城市，有些城市间存在 <strong>单向</strong> 道路。这个国家一共有 n - 1 条路。我们知道，如果把边视作双向的，那么从任意城市出发能到达任意城市。</p>
+<p>城市的委员会最近决定为 Treeland 国选择一个首都，显然首都会是国中的一个城市。委员会将在首都开会，并经常去其他城市（这里不考虑从其他城市回到首都）。因此，如果城市 a 被选为首都，那么所有的道路应该被定向，以使得我们能从城市 a 到达其他城市。所以，有些路可能需要反转方向。</p>
 <p>帮助委员会选择首都使得他们需要反转道路的次数最小。</p>
 <p>第一行输出需要反转的道路数量的最小值。第二行输出所有可能的选择首都的方式，你需要以从小到大的顺序输出所有可能的城市编号。</p>
 <div class="highlight"><div class="chroma">
@@ -2533,8 +2693,8 @@ $$<h4 id="选课">选课
 </div>
 </div><h4 id="nearby-cows-g">Nearby Cows G
 </h4><p>FJ 注意到了他的奶牛经常在附近的田地移动。考虑到这个事情，他想要在每个田地里种足够的草，不仅是为了最初在那块地里的奶牛，也是为了从附近田地来的奶牛。</p>
-<p>特别地，FJ 的农场由 $N(1 \leq N \leq 100000)$ 个田地组成，某些田地之间由双向道路连接（一共有 $N-1$ 条）。对于田地 $i$，它是 $C_i$ 头奶牛的家，尽管奶牛有时能经过最多 $K$ 条边去到其它田地。</p>
-<p>FJ 想在任意一个田地 $i$ 中种足够的草去喂养最大数量的奶牛 $M_i$（最终可能到这块地的奶牛），即仅经过最多 $K(1 \leq K \leq 20)$ 条边到达这里的奶牛。给定农场的结构和任意一个田地的奶牛数量 $C_i$，请求出对于任意一个 $i$ 求出对应的 $M_i$。</p>
+<p>特别地，FJ 的农场由 N(1 &lt;= N &lt;=100000) 个田地组成，某些田地之间由双向道路连接（一共有 N-1 条）。对于田地 i，它是 C_i 头奶牛的家，尽管奶牛有时能经过最多 K 条边去到其它田地。</p>
+<p>FJ 想在任意一个田地 i中种足够的草去喂养最大数量的奶牛 M_i（最终可能到这块地的奶牛），即仅经过最多 K(1 &lt;= K &lt;= 20) 条边到达这里的奶牛。给定农场的结构和任意一个田地的奶牛数量 C_i，请求出对于任意一个 i 求出对应的 M_i。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -2713,12 +2873,25 @@ $$<h4 id="选课">选课
             
                 
 <article class="">
-    <a href="/p/another-day-of-sun/">
+    <a href="/p/templates-collection/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">Another Day of Sun</h2>
+            <h2 class="article-title">Templates Collection</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/sum-of-lds/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Sum Of LDS</h2>
         </div>
     </a>
 </article>
@@ -2739,12 +2912,12 @@ $$<h4 id="选课">选课
             
                 
 <article class="">
-    <a href="/p/great-cow-gathering-g/">
+    <a href="/p/poor-trip/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">Great Cow Gathering G</h2>
+            <h2 class="article-title">Poor Trip</h2>
         </div>
     </a>
 </article>
@@ -2752,25 +2925,12 @@ $$<h4 id="选课">选课
             
                 
 <article class="">
-    <a href="/p/tree-problem/">
+    <a href="/p/make-it-equal/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">Tree Problem</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/diversity/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Diversity</h2>
+            <h2 class="article-title">Make it Equal</h2>
         </div>
     </a>
 </article>
@@ -2791,7 +2951,7 @@ $$<h4 id="选课">选课
         
             2024 - 
         
-        2025 Gao &#34;KieRaN&#34; Ziyuan
+        2026 Gao &#34;KieRaN&#34; Ziyuan
     </section>
     
     <section class="powerby">

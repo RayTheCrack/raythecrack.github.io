@@ -6,6 +6,32 @@
         <description>Recent content in Data Structures on OxyTheCrack</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <copyright>Gao &#34;KieRaN&#34; Ziyuan</copyright><atom:link href="http://localhost:1313/categories/data-structures/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>Gao &#34;KieRaN&#34; Ziyuan</copyright>
+        <lastBuildDate>Tue, 07 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/data-structures/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Clearance</title>
+        <link>http://localhost:1313/p/clearance/</link>
+        <pubDate>Tue, 07 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/clearance/</guid>
+        <description>&lt;h3 id=&#34;problem-statement&#34;&gt;Problem Statement
+&lt;/h3&gt;&lt;p&gt;AtCoder Inc.&amp;rsquo;s online shop currently handles $N$ products, and the stock of product $i$ is $A_i$ units remaining.&lt;/p&gt;
+&lt;p&gt;Process the following $Q$ orders in order. The $i$-th order is as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Buy $k_i$ units each of products $l_i,l_i+1,\dots,r_i$. For products with fewer than $k_i$ units, buy all available units. Report the total number of products bought in this order.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Note that for $i&amp;lt;Q$, the stock of products bought in the $i$-th order is reduced before proceeding to the $(i+1)$-th order.&lt;/p&gt;
+&lt;h3 id=&#34;constraints&#34;&gt;Constraints
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;All input values are integers.&lt;/li&gt;
+&lt;li&gt;$1 \le N \le 3 \times 10^5$&lt;/li&gt;
+&lt;li&gt;$1 \le A_i \le 10^{15}$&lt;/li&gt;
+&lt;li&gt;$1 \le Q \le 3 \times 10^5$&lt;/li&gt;
+&lt;li&gt;$1 \le l_i \le r_i \le N$&lt;/li&gt;
+&lt;li&gt;$1 \le k_i \le 10^9$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;solving&#34;&gt;Solving
+&lt;/h3&gt;</description>
+        </item>
+        
     </channel>
 </rss>
